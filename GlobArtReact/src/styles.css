@@ -1,0 +1,98 @@
+/* src/styles.css */
+
+/* Estilo general del cuerpo */
+body {
+    font-family: 'Arial', sans-serif;
+    font-size: 16px;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9; /* Color de fondo suave */
+  }
+  
+  /* Encabezado */
+  header {
+    background-color: #d38451; /* Color del encabezado */
+    color: white;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  header h1 {
+    margin: 0;
+    font-size: 2.5em; /* Tamaño de fuente grande */
+  }
+  
+  /* Navegación */
+  nav ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  nav ul li {
+    display: inline;
+    margin-right: 20px; /* Espacio entre enlaces */
+  }
+  
+  nav ul li a {
+    color: white;
+    text-decoration: none; /* Sin subrayado */
+  }
+  
+  /* Sección principal */
+  main {
+    padding: 20px;
+  }
+  
+  /* Estilo del carousel */
+  .carousel {
+    display: flex;
+    overflow-x: auto; /* Permitir desplazamiento horizontal */
+  }
+  
+  .carousel-images {
+    display: flex;
+  }
+  
+  .carousel-images img {
+    width: 200px; /* Ancho fijo para las imágenes del carousel */
+    height: auto; /* Mantener proporciones */
+    margin-right: 10px; /* Espacio entre imágenes */
+  }
+  
+  /* Formulario de contacto */
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  form input, form textarea {
+    margin-bottom: 10px; /* Espacio entre campos */
+    padding: 10px;
+  }
+  
+  form button {
+    background-color: #d38451; /* Color del botón */
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer; /* Cambiar cursor al pasar por encima */
+  }
+  
+  form button:hover {
+    background-color: #b76a3a; /* Color al pasar el ratón sobre el botón */
+  }
+  
+  /* Mensajes de error y éxito */
+  p.error {
+    color: red; /* Color rojo para mensajes de error */
+  }
+  
+  p.success {
+    color: green; /* Color verde para mensajes de éxito */
+  }
+  
+  /* Estilo de la ubicación (Google Maps) */
+  iframe {
+    border: none; /* Sin borde en el iframe */
+  }

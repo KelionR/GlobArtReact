@@ -1,0 +1,16 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+.carousel {
+    display: flex;
+    overflow-x: auto;
+}
+
+.carousel-item {
+    margin-right: 10px;
+}
+
+.carousel-item img {
+    width: 200px;
+}
