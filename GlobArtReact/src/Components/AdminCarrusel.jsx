@@ -1,76 +1,118 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
+import '../Styles/Carrusel.css';
 
-function AdminCarrusel() {
-  const [images, setImages] = useState([]);
-  const [newImage, setNewImage] = useState("");
+const AdminCarrusel = () => {
+  const [indice, setIndice] = useState(0);
+  const [imagenes, setImagenes] = useState([]);
+  const [archivo, setArchivo] = useState(null);
+  const [modoEdicion, setModoEdicion] = useState(false);
 
   useEffect(() => {
-    fetch('http://localhost:3000/images')
-      .then(response => response.json())
-      .then(data => setImages(data));
+    const cargarImagenes = async () => {
+      const response = await fetch('http://localhost:3000/imagenes');
+      const data = await response.json();
+      setImagenes(data);
+    };
+    cargarImagenes();
   }, []);
 
-  const handleAddImage = () => {
-    const newId = images.length ? images[images.length - 1].id + 1 : 1;
-    const imageObj = { id: newId, src: newImage };
-    
-    fetch('http://localhost:3000/images', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(imageObj),
-    })
-    .then(() => setImages([...images, imageObj]))
-    .catch(err => console.log(err));
+  const siguiente = () => {
+    setIndice((indice + 1) % imagenes.length);
   };
 
-  const handleDeleteImage = (id) => {
-    fetch(`http://localhost:3000/images/${id}`, {
-      method: 'DELETE',
-    })
-    .then(() => setImages(images.filter(image => image.id !== id)))
-    .catch(err => console.log(err));
+  const anterior = () => {
+    setIndice((indice - 1 + imagenes.length) % imagenes.length);
   };
 
-  const handleImageChange = (id, newSrc) => {
-    const updatedImage = { id, src: newSrc };
-    
-    fetch(`http://localhost:3000/images/${id}`, {
-      method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(updatedImage),
-    })
-    .then(() => {
-      const updatedImages = images.map(image => 
-        image.id === id ? updatedImage : image
-      );
-      setImages(updatedImages);
-    })
-    .catch(err => console.log(err));
+  const agregarImagen = async () => {
+    if (archivo) {
+      const reader = new FileReader();
+      reader.onloadend = async () => {
+        const base64data = reader.result;
+        const nuevaImagen = { src: base64data };
+
+        await fetch('http://localhost:3000/imagenes', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(nuevaImagen),
+        });
+
+        setImagenes([...imagenes, nuevaImagen]);
+        setArchivo(null);
+      };
+      reader.readAsDataURL(archivo);
+    }
+  };
+
+  const eliminarImagen = async () => {
+    if (imagenes.length > 0) {
+      const imagenAEliminar = imagenes[indice];
+
+      await fetch(`http://localhost:3000/imagenes/${imagenAEliminar.id}`, {
+        method: 'DELETE',
+      });
+
+      const nuevasImagenes = imagenes.filter((_, i) => i !== indice);
+      setImagenes(nuevasImagenes);
+      setIndice(0);
+    }
+  };
+
+  const editarImagen = async () => {
+    if (archivo && imagenes.length > 0) {
+      const reader = new FileReader();
+      reader.onloadend = async () => {
+        const base64data = reader.result;
+        const imagenAEditar = imagenes[indice];
+
+        await fetch(`http://localhost:3000/imagenes/${imagenAEditar.id}`, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ src: base64data }),
+        });
+
+        const nuevasImagenes = [...imagenes];
+        nuevasImagenes[indice].src = base64data;
+        setImagenes(nuevasImagenes);
+        setArchivo(null);
+        setModoEdicion(false);
+      };
+      reader.readAsDataURL(archivo);
+    }
   };
 
   return (
-    <div>
-      <h2>Admin Carrusel</h2>
-      <input
-        type="text"
-        placeholder="Enter base64 image string"
-        value={newImage}
-        onChange={(e) => setNewImage(e.target.value)}
-      />
-      <button onClick={handleAddImage}>Add Image</button>
-      {images.map((image) => (
-        <div key={image.id}>
-          <img src={image.src} alt={`Image ${image.id}`} width="100" />
-          <input
-            type="text"
-            value={image.src}
-            onChange={(e) => handleImageChange(image.id, e.target.value)}
-          />
-          <button onClick={() => handleDeleteImage(image.id)}>Delete</button>
-        </div>
-      ))}
+    <div className="carrusel">
+      <button onClick={anterior}>Anterior</button>
+      {imagenes.length > 0 && <img src={imagenes[indice].src} alt={`Imagen ${indice + 1}`} />}
+      <button onClick={siguiente}>Siguiente</button>
+
+      <div>
+        <input
+          type="file"
+          accept="image/*"
+          onChange={(e) => setArchivo(e.target.files[0])}
+        />
+        
+        {modoEdicion ? (
+          <>
+            <button onClick={editarImagen}>Guardar Cambios</button>
+            <button onClick={() => setModoEdicion(false)}>Cancelar Edición</button>
+          </>
+        ) : (
+          <>
+            <button onClick={agregarImagen}>Agregar Imagen</button>
+            <button onClick={eliminarImagen}>Eliminar Imagen</button>
+            <button onClick={() => setModoEdicion(true)}>Editar Imagen</button>
+          </>
+        )}
+      </div>
+
+      <div>
+        <p>Índice actual: {indice + 1} / {imagenes.length}</p>
+      </div>
     </div>
   );
-}
+};
 
 export default AdminCarrusel;

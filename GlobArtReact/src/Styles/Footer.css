@@ -1,0 +1,35 @@
+.footer {
+    background-color: #ffa2c4; 
+    color: white;
+    padding: 20px 0;
+    margin-top: 20px;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.footer-info,
+.footer-social,
+.footer-legal {
+    flex: 1 1 200px; 
+    margin: 10px;
+}
+
+.footer-legal a,
+.footer-social a {
+    color: white; 
+    text-decoration: none; 
+}
+
+.footer-legal a:hover,
+.footer-social a:hover {
+    text-decoration: underline; 
+}
+
+.copyRight {
+    text-align: center;
+    margin-top: 20px;
+}

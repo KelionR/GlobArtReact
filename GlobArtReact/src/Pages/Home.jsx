@@ -1,6 +1,7 @@
 import Header from '../Components/Header';
-import Carousel from '../Components/Carrusel';
+import Carrrusel from '../Components/Carrusel'
 import '../Styles/Home.css'
+import Footer from '../Components/Footer';
 
 const Home = () => {
   return (
@@ -10,9 +11,10 @@ const Home = () => {
       <main>
         <br />
         <h1 className='Bienvenidos'>Bienvenido a GlobArte</h1>
-        <Carousel />
+        <Carrrusel/>
         {/* promociones */}
       </main>
+      <Footer/>
     </>
   );
 };

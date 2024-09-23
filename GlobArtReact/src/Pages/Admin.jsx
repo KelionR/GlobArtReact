@@ -1,21 +1,20 @@
 import Header from '../Components/Header';
-import AdminPage from '../Components/AdminPage';
-import Login from '../Pages/Login';
-import { useState } from 'react';
+import AdminCarrrusel from '../Components/AdminCarrusel'
+import '../Styles/Home.css'
+import Footer from '../Components/Footer';
 
 const Admin = () => {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-
   return (
     <>
       <Header />
+      <img src="\src\imgs\Flamingos.jpg" alt="" className='Portada'/>
       <main>
-        {!isAuthenticated ? (
-          <Login onLogin={setIsAuthenticated} />
-        ) : (
-          <AdminPage />
-        )}
+        <br />
+        <h1 className='Bienvenidos'>Bienvenido a GlobArte</h1>
+        <AdminCarrrusel/>
+        {/* promociones */}
       </main>
+      <Footer/>
     </>
   );
 };

@@ -1,25 +1,30 @@
-.field {
-    margin-bottom: 10px;
-  }
-  
-  .field label {
-    display: block;
-    font-size: 12px;
-    color: #777;
-  }
-  
-  .field input {
-    display: block;
-    min-width: 250px;
-    line-height: 1.5;
-    font-size: 14px;
-  }
-  
-  input[type="submit"] {
-    display: block;
-    padding: 6px 30px;
-    font-size: 14px;
-    background-color: #4460AA;
-    color: #fff;
-    border: none
-  }
+.field{
+  margin-bottom: 15px;
+}
+
+.field label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.field input,
+.field select,
+.field textarea {
+  width: 100%;
+  padding: 8px;
+  box-sizing: border-box;
+  border: 1px solid #69696965;
+  border-radius: 10px;
+  outline: 0;
+  padding: 10px 10px 20px;
+  color: rgb(0, 0, 0);
+  cursor: text;
+  font-size: .9em;
+  top: 15px;
+  left: 10px;
+}
+.borde {
+  border: 1px solid #FFC0CB;
+  border-radius: 20px;
+  padding: 30px;
+}
