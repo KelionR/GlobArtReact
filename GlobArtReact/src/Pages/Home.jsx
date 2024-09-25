@@ -30,7 +30,7 @@ const Home = () => {
 
         <div className="Bienvenidos">
           <Promociones />
-          <p>{textoPromociones}</p>
+          <p>Promocion de 30% para globos de cualquier tipo este fin de semana</p>
         </div>
 
         
