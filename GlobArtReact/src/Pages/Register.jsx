@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import '../Styles/Mediaquery.css'
 
 const Register = ({ onRegister }) => {
   const [credentials, setCredentials] = useState({ username: '', password: '' });

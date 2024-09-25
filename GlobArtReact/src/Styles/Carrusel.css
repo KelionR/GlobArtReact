@@ -1,20 +1,19 @@
-.carrusel {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .carrusel img {
-    max-width: 600px;
-    max-height: 300px;
-    margin: 20px;
-  }
-  
-  .carrusel button {
-    padding: 10px;
-    margin: 5px;
-  }
-  
-  .carrusel input {
-    padding: 10px;
-  }
+.carrusel-container {
+  display: flex;
+  align-items: center; /* Alinea verticalmente */
+  margin-bottom: 20px; /* Espacio entre carruseles */
+}
+
+.carrusel-text {
+  margin-left: 20px; /* Espacio entre el carrusel y el texto */
+  flex: 1; /* Permite que el texto ocupe el espacio restante */
+}
+
+.carrusel-text h2 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.carrusel-text p {
+  font-size: 1rem;
+}

@@ -1,4 +1,6 @@
 import Header from '../Components/Header';
+import Footer from '../Components/Footer';
+import '../Styles/Mediaquery.css'
 
 const Location = () => {
   return (
@@ -15,6 +17,7 @@ const Location = () => {
           loading="lazy"
         ></iframe>
       </main>
+      <Footer />
     </>
   );
 };

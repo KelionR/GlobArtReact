@@ -1,4 +1,3 @@
-/* Estilo general del cuerpo */
 .Logo{
     border-radius: 50%;
     border: solid rgba(255, 252, 252, 0.265) 2px;
@@ -12,6 +11,8 @@ text-align: center;
 width: 100% ;
 height: 650px ;
 }
+
+
 
 body {
     font-family: 'Arial', sans-serif;
@@ -107,3 +108,123 @@ body {
   iframe {
     border: none; /* Sin borde en el iframe */
   }
+
+  .carousel-text-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 20px 0; /* Separación entre secciones */
+  height: 400px; /* Ajustar altura del contenedor */
+}
+
+.carousel {
+  flex: 1;
+  max-width: 50%;
+}
+
+.text-content {
+  flex: 1;
+  padding: 20px;
+  max-width: 50%;
+}
+
+.text-content h2 {
+  font-size: 1.8em;
+  color: #cc9c9c;
+}
+
+.text-content p {
+  font-size: 1.2em;
+  color: #333;
+}
+
+.Portada {
+  width: 100%;
+  height: 650px;
+  object-fit: cover;
+}
+
+/* Estilos generales */
+body {
+  font-family: Arial, sans-serif;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centra horizontalmente */
+}
+
+/* Estilo para contenedores */
+.bienvenidos-container,
+.carrusel-container {
+  display: flex;
+  flex-direction: column; /* Alinea los elementos verticalmente */
+  justify-content: flex-end; /* Alinea el contenido hacia abajo */
+  align-items: center; /* Centra horizontalmente */
+  width: 100%; /* O ajusta según sea necesario */
+  padding: 20px; /* Espaciado interno */
+}
+
+/* Estilo adicional para títulos */
+.carrusel-container h2 {
+  margin-bottom: 10px; /* Espacio entre el título y el contenido */
+}
+
+/* Estilo para la imagen de portada */
+.Portada {
+  width: 100%; /* Ajusta según sea necesario */
+  height: auto;
+}
+
+/* Estilo para los textos de bienvenida */
+.Bienvenidos {
+  text-align: center; /* Centra el texto */
+}
+
+/* Estilo general */
+body {
+    font-family: 'Arial', sans-serif;
+    font-size: 16px;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9; /* Color de fondo suave */
+}
+
+/* Encabezado */
+header {
+    background-color: #cc9c9c; /* Color del encabezado */
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+/* Títulos */
+.Bienvenidos {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.Promo {
+    text-align: center;
+    font-size: 2em; /* Tamaño de fuente grande */
+    color: #000000; /* Color destacado */
+}
+
+/* Imagen de portada */
+.Portada {
+    width: 100%;
+    height: auto; /* Cambiado a auto para mantener proporciones */
+}
+
+
+.carrusel-container h2 {
+    margin-bottom: 10px; /* Espacio entre el título y el contenido */
+}
+
+/* Texto en contenedores */
+.carrusel-container p {
+    text-align: center; /* Centra el texto dentro del contenedor */
+    max-width: 600px; /* Limita el ancho del texto para mejor legibilidad */
+}

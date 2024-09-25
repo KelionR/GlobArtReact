@@ -1,79 +1,79 @@
 import React, { useState, useEffect } from 'react';
 import '../Styles/Carrusel.css';
 
-const AdminCarrusel = () => {
+const AdminRamos = () => {
   const [indice, setIndice] = useState(0);
-  const [imagenes, setImagenes] = useState([]);
+  const [ramos, setRamos] = useState([]);
   const [archivo, setArchivo] = useState(null);
   const [modoEdicion, setModoEdicion] = useState(false);
 
   useEffect(() => {
-    const cargarImagenes = async () => {
-      const response = await fetch('http://localhost:3000/imagenes');
+    const cargarRamos = async () => {
+      const response = await fetch('http://localhost:3000/ramos');
       const data = await response.json();
-      setImagenes(data);
+      setRamos(data);
     };
-    cargarImagenes();
+    cargarRamos();
   }, []);
 
   const siguiente = () => {
-    setIndice((indice + 1) % imagenes.length);
+    setIndice((indice + 1) % ramos.length);
   };
 
   const anterior = () => {
-    setIndice((indice - 1 + imagenes.length) % imagenes.length);
+    setIndice((indice - 1 + ramos.length) % ramos.length);
   };
 
-  const agregarImagen = async () => {
+  const agregarRamo = async () => {
     if (archivo) {
       const reader = new FileReader();
       reader.onloadend = async () => {
         const base64data = reader.result;
-        const nuevaImagen = { src: base64data };
+        const nuevoRamo = { src: base64data };
 
-        await fetch('http://localhost:3000/imagenes', {
+        await fetch('http://localhost:3000/ramos', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(nuevaImagen),
+          body: JSON.stringify(nuevoRamo),
         });
 
-        setImagenes([...imagenes, nuevaImagen]);
+        setRamos([...ramos, nuevoRamo]);
         setArchivo(null);
       };
       reader.readAsDataURL(archivo);
     }
   };
 
-  const eliminarImagen = async () => {
-    if (imagenes.length > 0) {
-      const imagenAEliminar = imagenes[indice];
+  const eliminarRamo = async () => {
+    if (ramos.length > 0) {
+      const ramoAEliminar = ramos[indice];
 
-      await fetch(`http://localhost:3000/imagenes/${imagenAEliminar.id}`, {
+      await fetch(`http://localhost:3000/ramos/${ramoAEliminar.id}`, {
         method: 'DELETE',
       });
 
-      const nuevasImagenes = imagenes.filter((_, i) => i !== indice);
-      setImagenes(nuevasImagenes);
+      const nuevosRamos = ramos.filter((_, i) => i !== indice);
+      setRamos(nuevosRamos);
       setIndice(0);
     }
   };
 
-  const editarImagen = async () => {
-    if (archivo && imagenes.length > 0) {
+  const editarRamo = async () => {
+    if (archivo && ramos.length > 0) {
       const reader = new FileReader();
       reader.onloadend = async () => {
         const base64data = reader.result;
-        const imagenAEditar = imagenes[indice];
+        const ramoAEditar = ramos[indice];
 
-        await fetch(`http://localhost:3000/imagenes/${imagenAEditar.id}`, {
+        await fetch(`http://localhost:3000/ramos/${ramoAEditar.id}`, {
           method: 'PUT',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ src: base64data }),
         });
 
-        const nuevasImagenes = [...imagenes];
-        nuevasImagenes[indice].src = base64data;
-        setImagenes(nuevasImagenes);
+        const nuevosRamos = [...ramos];
+        nuevosRamos[indice].src = base64data;
+        setRamos(nuevosRamos);
         setArchivo(null);
         setModoEdicion(false);
       };
@@ -84,7 +84,7 @@ const AdminCarrusel = () => {
   return (
     <div className="carrusel">
       <button onClick={anterior}>Anterior</button>
-      {imagenes.length > 0 && <img src={imagenes[indice].src} alt={`Imagen ${indice + 1}`} />}
+      {ramos.length > 0 && <img src={ramos[indice].src} alt={`Ramo ${indice + 1}`} />}
       <button onClick={siguiente}>Siguiente</button>
 
       <div>
@@ -96,23 +96,23 @@ const AdminCarrusel = () => {
         
         {modoEdicion ? (
           <>
-            <button onClick={editarImagen}>Guardar Cambios</button>
+            <button onClick={editarRamo}>Guardar Cambios</button>
             <button onClick={() => setModoEdicion(false)}>Cancelar Edición</button>
           </>
         ) : (
           <>
-            <button onClick={agregarImagen}>Agregar Imagen</button>
-            <button onClick={eliminarImagen}>Eliminar Imagen</button>
-            <button onClick={() => setModoEdicion(true)}>Editar Imagen</button>
+            <button onClick={agregarRamo}>Agregar Ramo</button>
+            <button onClick={eliminarRamo}>Eliminar Ramo</button>
+            <button onClick={() => setModoEdicion(true)}>Editar Ramo</button>
           </>
         )}
       </div>
 
       <div>
-        <p>Índice actual: {indice + 1} / {imagenes.length}</p>
+        <p>Índice actual: {indice + 1} / {ramos.length}</p>
       </div>
     </div>
   );
 };
 
-export default AdminCarrusel;
+export default AdminRamos;

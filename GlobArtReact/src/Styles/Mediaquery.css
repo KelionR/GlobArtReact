@@ -1,0 +1,24 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+/* Móviles (pantallas hasta 480px) */
+@media only screen and (max-width: 480px) {
+    body {
+        background-color: white;
+    }
+}
+
+/* Tabletas (pantallas entre 481px y 768px) */
+@media only screen and (min-width: 481px) and (max-width: 768px) {
+    body {
+        background-color: white; /* Color de fondo para tabletas */
+    }
+}
+
+/* Dispositivos de escritorio (pantallas mayores a 768px) */
+@media only screen and (min-width: 769px) {
+    body {
+        background-color: white; /* Color de fondo para escritorio */
+    }
+}

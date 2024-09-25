@@ -6,11 +6,8 @@ const Footer = () => {
         <footer className="footer">
             <div className="footer-container">
                 <div className="footer-info">
-                    <h4>Información de Contacto</h4>
-                    <p>Calle Ejemplo 123</p>
-                    <p>Ciudad, País</p>
-                    <p>Email: globoartecr@gmail.com</p>
-                    <p>Teléfono: +506 8524-8401</p>
+                <p><strong>Correo electrónico:</strong> <a href="mailto:globoartecr@gmail.com">globoartecr@gmail.com</a></p>
+                <p>Teléfono: +506 8524-8401</p>
                 </div>
 
                 <div className="footer-social">
@@ -22,9 +19,8 @@ const Footer = () => {
 
                 <div className="footer-legal">
                     <h4>Enlaces</h4>
-                    <a href="/contact">Contacto</a>
-                    <a href="/privacy-policy">Política de Privacidad</a>
-                    <a href="/terms-of-service">Términos de Servicio</a>
+                    <a href="http://localhost:5173/about">Contacto</a>
+                    <a href="http://localhost:5173/location">Ubicacion</a>
                 </div>
             </div>
 

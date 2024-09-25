@@ -1,40 +1,40 @@
 import React, { useState, useEffect } from 'react';
 import '../Styles/Carrusel.css';
 
-const Carrusel = () => {
-  const [imagenes, setImagenes] = useState([]);
+const Globos = () => {
+  const [globos, setGlobos] = useState([]);
   const [indice, setIndice] = useState(0);
 
   useEffect(() => {
-    const cargarImagenes = async () => {
-      const response = await fetch('http://localhost:3000/imagenes');
+    const cargarGlobos = async () => {
+      const response = await fetch('http://localhost:3000/globos');
       const data = await response.json();
-      setImagenes(data);
+      setGlobos(data);
     };
-    cargarImagenes();
+    cargarGlobos();
 
     // Cambiar automáticamente cada 3 segundos
     const intervalo = setInterval(() => {
-      setIndice((prevIndice) => (prevIndice + 1) % imagenes.length);
+      setIndice((prevIndice) => (prevIndice + 1) % globos.length);
     }, 3000);
 
     return () => clearInterval(intervalo); // Limpiar el intervalo al desmontar
-  }, [imagenes.length]);
+  }, [globos.length]);
 
   const siguiente = () => {
-    setIndice((indice + 1) % imagenes.length);
+    setIndice((indice + 1) % globos.length);
   };
 
   return (
     <div className="carrusel">
       <button onClick={() => siguiente()}>Siguiente</button>
-      {imagenes.length > 0 && <img src={imagenes[indice].src} alt={`Imagen ${indice + 1}`} />}
+      {globos.length > 0 && <img src={globos[indice].src} alt={`Globo ${indice + 1}`} />}
       
       <div>
-        <p>Índice actual: {indice + 1} / {imagenes.length}</p>
+        <p>Índice actual: {indice + 1} / {globos.length}</p>
       </div>
     </div>
   );
 };
 
-export default Carrusel;
+export default Globos;
